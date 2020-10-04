@@ -13,5 +13,9 @@
   },
   "devDependencies": {
     "prettier": "^2.1.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adameier/utopian-sass.git"
   }
 }
