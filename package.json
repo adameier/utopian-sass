@@ -1,6 +1,6 @@
 {
   "name": "utopian-sass",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Sass module for generating values for fluid responsive design.",
   "main": "utopian.scss",
   "scripts": {
