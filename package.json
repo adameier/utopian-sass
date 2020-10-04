@@ -1,0 +1,17 @@
+{
+  "name": "utopian-sass",
+  "version": "0.1.0",
+  "description": "Sass module for generating values for fluid responsive design.",
+  "main": "utopian.scss",
+  "scripts": {
+    "test": "npx sass utopian.scss tmp/utopian.css"
+  },
+  "author": "Adam Meier",
+  "license": "MIT",
+  "dependencies": {
+    "sass": "^1.26.11"
+  },
+  "devDependencies": {
+    "prettier": "^2.1.2"
+  }
+}

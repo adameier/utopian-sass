@@ -1,0 +1,38 @@
+@use 'sass:math';
+@use '../functions/decimal-round' as *;
+
+@mixin process-steps(
+  $neg-steps,
+  $pos-steps,
+  $min-size,
+  $min-scale,
+  $max-size,
+  $max-scale,
+  $var-bp,
+  $prefix,
+  $step-prefix
+) {
+  @for $i from $neg-steps through 1 {
+    $vmin: --#{$prefix}--#{$i}-min;
+    $vmax: --#{$prefix}--#{$i}-max;
+
+    #{$vmin}: decimal-round($min-size * math.pow($min-scale, -$i), 2);
+    #{$vmax}: decimal-round($max-size * math.pow($max-scale, -$i), 2);
+
+    --#{$step-prefix}--#{$i}: calc(
+      ((var(#{$vmin}) / 16) * 1rem) + (var(#{$vmax}) - var(#{$vmin})) * var(#{$var-bp})
+    );
+  }
+
+  @for $i from 0 through $pos-steps {
+    $vmin: --#{$prefix}-#{$i}-min;
+    $vmax: --#{$prefix}-#{$i}-max;
+
+    #{$vmin}: decimal-round($min-size * math.pow($min-scale, $i), 2);
+    #{$vmax}: decimal-round($max-size * math.pow($max-scale, $i), 2);
+
+    --#{$step-prefix}-#{$i}: calc(
+      ((var(#{$vmin}) / 16) * 1rem) + (var(#{$vmax}) - var(#{$vmin})) * var(#{$var-bp})
+    );
+  }
+}

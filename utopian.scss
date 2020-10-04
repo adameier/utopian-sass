@@ -1,0 +1,51 @@
+@use 'workers/process-steps' as *;
+
+$min-width: 320 !default;
+$min-size: 21 !default;
+$min-scale: 1.2 !default;
+
+$max-width: 1140 !default;
+$max-size: 24 !default;
+$max-scale: 1.25 !default;
+
+$prefix: 'fluid' !default;
+$step-prefix: 'step' !default;
+
+$pos-steps: 5 !default;
+$neg-steps: 2 !default;
+
+$var-minw: --#{$prefix}-min-width;
+$var-maxw: --#{$prefix}-max-width;
+$var-screen: --#{$prefix}-screen;
+$var-bp: --#{$prefix}-bp;
+
+:root {
+  #{$var-minw}: #{$min-width};
+  #{$var-maxw}: #{$max-width};
+
+  #{$var-screen}: 100vw;
+  #{$var-bp}: calc(
+    (var(#{$var-screen}) - var(#{$var-minw}) / 16 * 1rem) /
+      (var(#{$var-maxw}) - var(#{$var-minw}))
+  );
+}
+
+@media screen and (min-width: #{$max-width}px) {
+  :root {
+    #{$var-screen}: calc(var(#{$var-maxw}) * 1px);
+  }
+}
+
+:root {
+  @include process-steps(
+    $neg-steps,
+    $pos-steps,
+    $min-size,
+    $min-scale,
+    $max-size,
+    $max-scale,
+    $var-bp,
+    $prefix,
+    $step-prefix
+  );
+}
